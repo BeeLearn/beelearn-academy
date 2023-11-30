@@ -17,8 +17,8 @@
         v-slot="{ selected }">
         <div
             v-if="selected"
-            class="flex space-x-2 px-2 py-3 text-nowrap border-b-4 border-violet-700 text-violet-700 rounded-b cursor-pointer" 
-            md="border-0 rounded-t bg-violet-100">
+            class="flex space-x-2 px-2 py-3 text-nowrap border-b-4 border-emerald-500 text-emerald-500 rounded-b cursor-pointer" 
+            md="border-0 rounded-t bg-emerald-100">
             <UnoIcon 
                 class="text-xl hidden md:block"
                 :class="tab.activeIcon" />

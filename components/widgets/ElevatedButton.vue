@@ -2,7 +2,7 @@
     const ButtonState = {
         error:'!border-b-3 !border-red-500 !bg-red-100',
         success: 'border-b-3 !border-green-500 !bg-green-100',
-        selected: '!border-b-3 !border-violet-700 !bg-violet-100',
+        selected: '!border-b-3 !border-emerald-500 !bg-emerald-100',
     }
 
     interface ElevatedButtonProps {

@@ -30,13 +30,13 @@
             @click="$emit('back')">Back</button>
         <button 
             v-if="isQuestionView" 
-            class="btn text-violet-700"
+            class="btn text-emerald-500"
             @click="$emit('unlock')">
             <UnoIcon class="i-mdi:lock-open text-xl" />
         </button>
         <button 
             v-if="isQuestionView && topicQuestion?.is_answered" 
-            class="btn text-violet-700"
+            class="btn text-emerald-500"
             @click="$emit('next')">Skip</button>
         <button 
             :disabled="loading || actionDisabled" 

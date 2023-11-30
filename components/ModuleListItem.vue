@@ -28,7 +28,7 @@
             <div 
                 class="text-white rounded p-2"
                 :class="{
-                    'bg-violet-700': isUnlocked,
+                    'bg-emerald-500': isUnlocked,
                     'bg-slate': !isUnlocked,
                 }">
                 <UnoIcon 

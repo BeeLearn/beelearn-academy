@@ -24,30 +24,23 @@
                 </button>
             </div>
         </div>
-        <div 
-            v-for="category in categories" 
-            :key="category.id" 
-            class="flex flex-col">
-            <div class="flex flex-col px-4 py-2">
-                <h1 class="text-xl font-extrabold">{{ category.name }}</h1>
-                <p class="text-stone-700">Similar summaries to ones you liked</p>
-            </div>
-            <div class="flex space-x-2 px-4 snap-x snap-mandatory overflow-x-scroll">
-                <CourseItem
-                    v-for="course in category.courses" 
-                    :key="course.id"
-                    :course="course" />
-            </div>
-        </div>
-        <div class="flex flex-col space-y-2 p-4">
-            <h1 class="text-xl font-extrabold">Personalized challenges</h1>
-            <div class="relative max-w-sm p-4 bg-fuchsia-100 border-1 border-fuchsia-200 rounded-lg">
-                <div class="space-y-4 max-w-xs">
-                    <h1 class="text-3xl font-extrabold">Let's Practice together</h1>
-                    <button class="px-8 py-3 bg-white text-fuchsia-700 rounded-full">Practice now</button>
+        <template                 
+            v-for="category, index in categories" 
+            :key="category.id">
+            <HomeChallengeAction v-if="index === 1" />
+            <div
+                class="flex flex-col">
+                <div class="flex flex-col px-4 py-2">
+                    <h1 class="text-xl font-extrabold">{{ category.name }}</h1>
+                    <p class="text-stone-700">{{ category.description }}</p>
                 </div>
-                <UnoIcon class="i-mdi:medal absolute -top-2 right-0 text-8xl text-violet-500" />
+                <div class="flex space-x-2 px-4 snap-x snap-mandatory overflow-x-scroll">
+                    <CourseItem
+                        v-for="course in category.courses" 
+                        :key="course.id"
+                        :course="course" />
+                </div>
             </div>
-        </div>
+        </template>
     </template>
 </template>

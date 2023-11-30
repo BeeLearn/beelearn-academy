@@ -9,7 +9,7 @@
 </script>
 <template>
     <div 
-        class="flex-1 grid grid-cols-2 px-2 py-4 gap-2"
+        class="flex-1 grid grid-cols-2 p-4 gap-x-2"
         md="flex flex-wrap">
         <CourseItem 
             v-for="course in courses" 

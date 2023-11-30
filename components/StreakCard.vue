@@ -18,6 +18,7 @@
             </p>
         </header>
         <VCalender 
+            class="font-albert-sans"
             expanded 
             borderless
             :attributes="[

@@ -18,7 +18,7 @@
                 <input 
                     placeholder="Email address" />
             </div>
-            <button class="w-xs md:w-sm btn bg-violet-700 text-white">Get a password link</button>
+            <button class="w-xs md:w-sm btn bg-emerald-500 text-white">Get a password link</button>
         </form>
     </section>
 </template>

@@ -37,7 +37,7 @@
     <div    
         class="flex-1 flex flex-col"
         md="flex-row overflow-hidden">
-        <TabGroup>
+        <TabGroup vertical>
             <HomeTab class="sticky top-0 z-10 md:z-0" />
             <TabPanels class="flex-1 flex flex-col bg-slate-50 overflow-x-scroll">
                 <TabPanel

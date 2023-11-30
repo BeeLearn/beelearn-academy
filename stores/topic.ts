@@ -51,10 +51,30 @@ export const useTopicStore = defineStore("topic", {
         })
         .execute();
     },
+    async updateTopic(topic: Topic, data: Record<string, any>) {
+      const response = await Api.instance.topicProvider.update({
+        path: topic.id,
+        data,
+      });
+
+      topicAdapter.updateOne(this, { id: topic.id, changes: response.data });
+    },
+    async updateTopicQuestion(
+      topicQuestion: TopicQuestion,
+      data: Record<string, any>,
+    ) {
+      const response = await Api.instance.topicQuestionProvider.update({
+        data: data,
+        path: topicQuestion.id,
+      });
+
+      this.setTopicQuestion(topicQuestion.topic!, response.data);
+    },
     setTopicQuestion(topic: Topic, topicQuestion: TopicQuestion) {
       const index = topic.topic_questions.findIndex(
         (element) => element.id === topicQuestion.id
       );
+
       if (index > -1) {
         topic.topic_questions[index] = topicQuestion;
         topicAdapter.setOne(this, topic);

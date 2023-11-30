@@ -48,7 +48,7 @@ export const createEntityAdapter = <K, V extends RecordKey = RecordKey>({
     state.ids = ids;
     state.entities = entities;
   },
-  updateOne(state: EntityState<V>, payload: EntityChangePayload<V>) {
+  updateOne(state: EntityState<K>, payload: EntityChangePayload<K>) {
     const data = Object.assign(state.entities[payload.id]!, payload.changes);
     state.entities[payload.id] = data;
   },

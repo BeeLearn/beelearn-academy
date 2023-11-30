@@ -1,7 +1,10 @@
 {
+    "prettier.endOfLine": "crlf",
+    "prettier.tabWidth": 2,
     "cSpell.words": [
         "bluegray",
         "dragdropquestion",
+        "leaderboard",
         "marshallswain",
         "multichoicequestion",
         "Noto",

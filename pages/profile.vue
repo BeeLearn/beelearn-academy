@@ -8,6 +8,7 @@
     const streaks = computed(() => streakStore.streaks);
 
     const weeklyStreaks = computed(() => streakStore.weeklyStreaks);
+    const isLoading = computed(() => rewardStore.isLoading || streakStore.isLoading);
 
     useAsyncData(async () => {
         if(rewardStore.state === "idle")
@@ -17,7 +18,12 @@
     });
 </script>
 <template>
-    <section class="flex-1 bg-stone-100 pb-8 overflow-y-scroll">
+    <div
+        v-if="isLoading"
+        class="m-auto progress progress-primary" />
+    <section
+        v-else
+        class="flex-1 bg-stone-100 pb-8 overflow-y-scroll">
         <header class="flex space-x-4 items-center p-4">
             <h1 class="flex-1 text-2xl font-black">Profile</h1>
             <NuxtLink to="/profile/settings">

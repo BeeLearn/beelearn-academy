@@ -6,6 +6,7 @@ type CategoryState = PaginateState & LoadingState;
 
 const categoryAdapter = createEntityAdapter<Category>({
   getSelectorId: (category) => category.id,
+  sortBy: (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at)
 });
 
 export const useCategoryStore = defineStore("category", {

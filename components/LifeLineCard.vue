@@ -36,7 +36,7 @@
             <UnoIcon
                 v-for="i in 3 - profile.lives"
                 :key="i" 
-                class="i-mdi:heart text-5xl text-stone-500" />
+                class="i-mdi:heart text-5xl text-slate-300" />
         </div>
         <section class="flex flex-col space-y-4">
             <div class="flex space-x-2 items-start card p-2 border-t">

@@ -86,7 +86,7 @@
             class="flex flex-col space-y-1">
             <div 
                 v-for="line in question.question.split(/\n/)" 
-                class="flex items-center whitespace-pre-wrap">
+                class="flex items-center">
                 <template 
                     v-for="token in line.split(/(\s+)/).map(element => element.replace(/\;/, ''))">
                     <TopicDragDropTemplate
@@ -97,7 +97,7 @@
                 </template>
             </div>
         </div>
-        <div class="flex space-x-2 center flex-wrap">
+        <div class="flex space-x-2 gap-y-2 center flex-wrap">
             <template                
                 v-for="option in options"
                 :key="option">

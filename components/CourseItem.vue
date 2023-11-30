@@ -14,7 +14,7 @@
 <template>
     <NuxtLink
         :to="`/${course.id}/modules/`" 
-        class="w-44 flex flex-col space-y-2 rounded shrink-0 snap-center"
+        class="w-40 flex flex-col space-y-2 rounded shrink-0 snap-center"
         @click="() => {
             if(!course.is_enrolled)
                 Api.instance.courseProvider.update({
@@ -29,7 +29,8 @@
         <div class="relative max-w-48 h-56">
             <img 
                 :src="course.illustration" 
-                class="w-full h-full object-cover rounded-lg shadow" />
+                class="w-full h-full object-cover rounded-lg shadow"
+                oncontextmenu="return false;" />
             <button 
                 v-if="course.is_new"
                 class="absolute top-0 right-0 m-2  flex space-x-1 bg-amber-500 shadow text-white px-2 py-1 rounded-full">

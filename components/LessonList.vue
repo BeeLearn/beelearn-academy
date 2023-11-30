@@ -13,8 +13,8 @@
 </script>
 <template>
     <Transition
-        enter-active-class="animate-slide-in-up animate-duration-200"
-        leave-active-class="animate-slide-out-down animate-duration-150">
+        enter-active-class="animate-fade-in animate-duration-200"
+        leave-active-class="animate-fade-out animate-duration-150">
         <DisclosurePanel class="flex flex-col space-y-4">
             <LessonListItem
                 v-for="lesson, index in lessons"

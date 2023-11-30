@@ -9,7 +9,9 @@ import CourseProvider from "./providers/course.provider";
 import LessonProvider from "./providers/lesson.provider";
 import ModuleProvider from "./providers/module.provider";
 import TopicProvider from "./providers/topic.provider";
+import LeagueProvider from "./providers/league.provider";
 import TopicQuestionProvider from "./providers/topic_question.provider";
+import UserLeagueProvider from "./providers/user_league.provider";
 
 class ApiImpl {
   private axios: AxiosInstance;
@@ -22,6 +24,8 @@ class ApiImpl {
   readonly moduleProvider: ModuleProvider;
   readonly lessonProvider: LessonProvider;
   readonly topicProvider: TopicProvider;
+  readonly leagueProvider: LeagueProvider;
+  readonly userLeagueProvider: UserLeagueProvider;
   readonly topicQuestionProvider: TopicQuestionProvider;
 
   constructor(accessToken: string) {
@@ -40,6 +44,8 @@ class ApiImpl {
     this.moduleProvider = new ModuleProvider(this.axios);
     this.lessonProvider = new LessonProvider(this.axios);
     this.topicProvider = new TopicProvider(this.axios);
+    this.leagueProvider = new LeagueProvider(this.axios);
+    this.userLeagueProvider = new UserLeagueProvider(this.axios);
     this.topicQuestionProvider = new TopicQuestionProvider(this.axios);
   }
 }

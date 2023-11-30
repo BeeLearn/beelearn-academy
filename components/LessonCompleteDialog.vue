@@ -25,7 +25,7 @@
                         <span>You're one step closer to reaching your goal!</span></p>
                 </div>
                 <div 
-                    class="flex flex-col space-y-2 center bg-bluegray-200 w-4/6 p-2 rounded-md"
+                    class="flex flex-col space-y-2 center bg-slate-100 w-4/6 p-2 rounded-md"
                     md="w-1/6">
                     <h1 class="text-base font-medium">Your rewards</h1>
                     <div class="flex center space-x-2">
@@ -40,7 +40,7 @@
             </section>
             <footer class="flex center p-4 border-t border-slate">
                 <button 
-                    class="bg-violet-700 text-white px-12 py-3 rounded" 
+                    class="bg-emerald-500 text-white px-12 py-3 rounded" 
                     @click="$router.back()">
                     Continue
                 </button>

@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   css: [
     "@unocss/reset/tailwind.css",
     "v-calendar/style.css",
+    "swiper/css",
     "~/assets/css/font.css",
     "~/global.css",
   ],
