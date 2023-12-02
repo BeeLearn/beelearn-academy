@@ -59,6 +59,9 @@ export const createEntityAdapter = <K, V extends RecordKey = RecordKey>({
         if (sortBy) return values.sort(sortBy);
         return values;
       },
+      selectOne(id: ReturnType<typeof getSelectorId>){
+        return state.entities[id];
+      },
     };
   },
 });

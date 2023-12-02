@@ -9,13 +9,18 @@
     defineProps<CourseItemProps>();
 
     const userStore = useUserStore();
+
     const user = computed(() => userStore.user!);
 </script>
 <template>
-    <NuxtLink
-        :to="`/${course.id}/modules/`" 
-        class="w-40 flex flex-col space-y-2 rounded shrink-0 snap-center"
+    <div
+        class="w-40 flex flex-col space-y-2 rounded shrink-0 snap-center cursor-pointer"
         @click="() => {
+            if(course.is_new && !user.is_premium){
+                $router.push({hash: '#subscribe'});
+                return;
+            }
+
             if(!course.is_enrolled)
                 Api.instance.courseProvider.update({
                     path: course.id,
@@ -25,6 +30,8 @@
                         },
                     },
                 });
+            
+                $router.push(`/${course.id}/modules/`);
         }">
         <div class="relative max-w-48 h-56">
             <img 
@@ -39,5 +46,5 @@
             </button>
         </div>
         <p>{{ course.name }}</p>
-    </NuxtLink>
+    </div>
 </template>

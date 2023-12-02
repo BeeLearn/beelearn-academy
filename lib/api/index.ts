@@ -12,6 +12,9 @@ import TopicProvider from "./providers/topic.provider";
 import LeagueProvider from "./providers/league.provider";
 import TopicQuestionProvider from "./providers/topic_question.provider";
 import UserLeagueProvider from "./providers/user_league.provider";
+import ThreadProvider from "./providers/thread.provider";
+import  CommentProvider from "./providers/comment.provider";
+import ReplyProvider from "./providers/reply.provider";
 
 class ApiImpl {
   private axios: AxiosInstance;
@@ -27,6 +30,10 @@ class ApiImpl {
   readonly leagueProvider: LeagueProvider;
   readonly userLeagueProvider: UserLeagueProvider;
   readonly topicQuestionProvider: TopicQuestionProvider;
+
+  readonly replyProvider: ReplyProvider;
+  readonly threadProvider: ThreadProvider;
+  readonly commentProvider: CommentProvider;
 
   constructor(accessToken: string) {
     this.axios = axios.create({
@@ -47,6 +54,10 @@ class ApiImpl {
     this.leagueProvider = new LeagueProvider(this.axios);
     this.userLeagueProvider = new UserLeagueProvider(this.axios);
     this.topicQuestionProvider = new TopicQuestionProvider(this.axios);
+
+    this.replyProvider = new ReplyProvider(this.axios);
+    this.threadProvider = new ThreadProvider(this.axios);
+    this.commentProvider = new CommentProvider(this.axios);
   }
 }
 

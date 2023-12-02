@@ -14,6 +14,6 @@
         <h1 class="text-4xl font-semibold">{{ topic.title }}</h1>
         <MarkdownStringRenderer
             :value="topic.content" 
-            class="text-base" />
+            class="text-[14px] text-stone-700" />
     </div>
 </template>

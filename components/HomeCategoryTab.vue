@@ -13,17 +13,7 @@
         v-if="loading" 
         class="m-auto progress progress-primary" />
     <template v-else>
-        <div>
-            <h1 class="text-2xl font-extrabold p-4">Categories you're interested in</h1>
-            <div class="flex space-x-2 flex-nowrap overflow-x-scroll px-4">
-                <button class="flex space-x-2 items-center shrink-0 bg-white p-2 border rounded-xl">
-                    <img 
-                        src="~/assets/test/money.svg"
-                        class="w-8 h-8" />
-                    <span>Web development</span>
-                </button>
-            </div>
-        </div>
+        <HomeUserCategory />
         <template                 
             v-for="category, index in categories" 
             :key="category.id">

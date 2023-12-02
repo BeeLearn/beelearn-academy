@@ -19,7 +19,7 @@ export const useUserLeagueStore = defineStore("userLeague", {
       state: "idle",
     }),
   actions: {
-    fetchUserLeagues(query: Record<string, any>) {
+    fetchUserLeagues(query?: Record<string, any>) {
       return reducer(
         Api.instance.userLeagueProvider.list({
           query,

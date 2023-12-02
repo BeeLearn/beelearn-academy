@@ -61,7 +61,7 @@ export const useTopicStore = defineStore("topic", {
     },
     async updateTopicQuestion(
       topicQuestion: TopicQuestion,
-      data: Record<string, any>,
+      data: Record<string, any>
     ) {
       const response = await Api.instance.topicQuestionProvider.update({
         data: data,
@@ -82,6 +82,7 @@ export const useTopicStore = defineStore("topic", {
     },
   },
   getters: {
+    isLoading: (state) => ["idle", "pending"].includes(state.state),
     topics: (state) => topicAdapter.getSelector(state).selectAll(),
   },
 });

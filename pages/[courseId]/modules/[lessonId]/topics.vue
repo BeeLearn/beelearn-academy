@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import Api from "~/lib/api";
   import type { FormExpose } from '~/widget.types';
   import type Topic from '~/lib/api/models/topic.model';
   import type TopicQuestion from '~/lib/api/models/topic_question.model';
@@ -13,6 +12,7 @@
   const router = useRouter();
   const userStore = useUserStore();
   const topicStore = useTopicStore();
+  const threadStore = useThreadStore();
 
   const isLoading = ref(false);
   const isChanged = ref(false);
@@ -41,6 +41,15 @@
     })
   );
 
+
+  const topic = computed<Topic>(() => {
+    const [viewType, value] = viewTypes.value[page.value - 1];
+
+    if(viewType === ViewType.QUESTION_VIEW)  return value.topic;
+    
+    return value;
+  });
+
   const page = computed<number>({
     get(){
       return Number(route.query.page ?? 1);
@@ -57,7 +66,7 @@
 
   const onQuestionSubmit = async function(){
     isLoading.value = true;
-		const value = viewTypes.value[page.value][1] as TopicQuestion;
+		const value = viewTypes.value[page.value - 1][1] as TopicQuestion;
 
     try {			
       if(questionRef.value!.isCorrect){      
@@ -80,14 +89,13 @@
   }
 
   const onTopicComplete = async function(){
-		const topic = viewTypes.value[page.value][1] as Topic;
 
-		if(topic.is_completed && topic.is_unlocked)	return;
+		if(topic.value.is_completed && topic.value.is_unlocked)	return;
 
 		isLoading.value = true;
 
     try {
-      await topicStore.updateTopic(topic, {
+      await topicStore.updateTopic(topic.value, {
         topic_complete_users: {
           add: [user.value.id],
         },
@@ -104,7 +112,13 @@
 
   useAsyncData(async () => {
     const lessonId = route.params.lessonId as string;
-    topicStore.getTopics(lessonId);
+    
+    if(topicStore.state === "idle")
+      topicStore.getTopics(lessonId);
+  });
+
+  onBeforeRouteLeave(async () => {
+    threadStore.$reset();
   });
 </script>
 <template>
@@ -131,10 +145,12 @@
         <div 
           class="order-2 col-start-3 py-4"
           md="order-last flex-1 flex items-start justify-end p-0">
-          <button class="flex items-center space-x-2 p-4">
+          <NuxtLink
+            :to="($route.query.page ? 'topics/' : '') +`${topic.thread_reference}/threads/`"
+            class="flex items-center space-x-2 p-4">
             <UnoIcon class="i-mdi:chevron-left text-xl" />
-            <p class="text-nowrap">54 Comments</p>
-          </button>
+            <p class="text-nowrap">{{ topic.thread_count }} {{ topic.thread_count > 1 ? 'Threads' : 'Thread' }}</p>
+          </NuxtLink>
         </div>
         <div 
           class="order-3 flex-1 flex flex-col space-y-4 col-span-100 row-span-100 px-6 overflow-y-scroll"
@@ -200,5 +216,6 @@
           :lessonName="breadcrumb!.lesson.name" />
       </Teleport>
     </template>
+    <NuxtPage />
   </section>
 </template>

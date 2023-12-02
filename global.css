@@ -110,3 +110,12 @@ body {
 .font-inter {
     font-family: 'Inter';
 }
+
+.sub__comment img {
+    @apply: !w-8 !h-8;
+}
+
+.prose-p {
+    font-size: 14px!important;
+    font-family: 'Albert Sans'!important;
+}

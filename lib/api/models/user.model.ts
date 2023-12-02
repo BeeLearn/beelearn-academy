@@ -1,4 +1,5 @@
 import type ID from "./_id.model";
+import type { Category } from "./metadata.model";
 import type Profile from "./profile.model";
 import type Settings from "./settings.model";
 import type Token from "./token.model";
@@ -19,6 +20,7 @@ type User = {
   settings: Settings;
   is_premium: boolean;
   token: Token;
+  categories: Category[];
   unread_notifications: number;
   user_type: keyof typeof UserType;
 } & ID;
