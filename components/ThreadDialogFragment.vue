@@ -1,9 +1,36 @@
 <script setup lang="ts">
+	import type Comment from '~/lib/api/models/comment.model';
+	import type Thread from '~/lib/api/models/thread.model';
+
 	const route = useRoute()
 	const threadStore = useThreadStore();
 
 	const threads = computed(() => threadStore.threads);
 	const isLoading = computed(() => threadStore.isLoading);
+
+	const content = ref<string>();
+	const isReplying = ref(false);
+	const parent = ref<Thread | null>(null);
+
+	const onReply = function(){
+		isReplying.value = true;
+
+		return threadStore.createComment({
+			content: content.value,
+			reference: route.query.reference,
+		}, parent.value)
+		.then(() => {
+			parent.value = null;
+			content.value = "";
+		})
+		.finally(() => isReplying.value = false);
+	}
+
+	watch(content, (value) => {
+		/// Don't account for d++b users 
+		if(value?.trim().length === 0)
+			parent.value = null;
+	});
 
 	onMounted(() => {
 		const reference = route.query.reference as string;
@@ -31,7 +58,7 @@
 					</button>
 				</div>
 			</header>
-			<div class="flex-1 flex flex-col">
+			<div class="flex-1 flex flex-col overflow-y-scroll">
 				<div
 					v-if="isLoading" 
 					class="w-8 h-8 m-auto progress progress-primary" />
@@ -39,14 +66,31 @@
 					v-else
 					:threads="threads"
 					@update-comment="threadStore.updateComment"
-					@fetch-replies="threadStore.fetchReplies" />
+					@fetch-replies="threadStore.fetchReplies"
+					@reply="(comment, thread) => {
+						parent = thread;
+						content = `@${comment.user.username} `;
+					}" />
 			</div>
 			<footer class="flex px-2 items-center border-t">
 				<input 
+					v-model="content"
 					class="text-base flex-1 p-3 placeholder-text-stone-700"
 					placeholder="Write a comment..." />
-				<button class="w-8 h-8 flex center bg-violet-700 rounded-full text-white">
-					<UnoIcon class="i-mdi:arrow-up text-2xl" />
+				<button 
+					:disabled="!(content && content?.trim().length > 0) || isReplying"
+					class="w-8 h-8 flex center rounded-full"
+					:class="
+						content && content?.trim().length > 0 ? 
+						'bg-violet-700 text-white' :
+						'bg-stone-200 text-stone-700/30'"
+					@click="onReply">
+					<div
+						v-if="isReplying" 
+						class="w-4 h-4 !border-2 progress border-stone" />
+					<UnoIcon
+						v-else
+						class="i-mdi:arrow-up text-2xl" />
 				</button>
 			</footer>
 		</div>

@@ -7,8 +7,9 @@
 	}
 
 	export type ThreadEmits = {
-		(change: 'fetchReplies', thread: Thread, next?: string | null): Promise<void>,
-		(change: 'updateComment', comment: Comment, data: Record<string, any>) : Promise<void>,
+		(event: 'reply', value: Comment, thread: Thread): void,
+		(event: 'fetchReplies', thread: Thread, next?: string | null): Promise<void>,
+		(event: 'updateComment', comment: Comment, data: Record<string, any>) : Promise<void>,
 	}
 
 	defineEmits<ThreadEmits>();
@@ -21,6 +22,7 @@
 			:key="thread.id"
 			:thread="thread"
 			@update-comment="(comment, data) => $emit('updateComment', comment, data)"
-			@fetch-replies="(thread, next) => $emit('fetchReplies', thread, next)" />
+			@fetch-replies="(thread, next) => $emit('fetchReplies', thread, next)"
+			@reply="(comment, thread) => $emit('reply', comment, thread)" />
 	</div>
 </template>

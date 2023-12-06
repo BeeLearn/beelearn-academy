@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.16",
+    "@leyton-techlab/vue-input-highlighter": "^0.0.6",
     "@nuxt/content": "^2.9.0",
     "@pinia/nuxt": "^0.5.1",
     "@popperjs/core": "^2.11.8",

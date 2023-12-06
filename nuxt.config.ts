@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   css: [
     "@unocss/reset/tailwind.css",
     "v-calendar/style.css",
+    "@leyton-techlab/vue-input-highlighter/style.css",
     "vue-toast-notification/dist/theme-sugar.css",
     "~/assets/css/font.css",
     "~/global.css",

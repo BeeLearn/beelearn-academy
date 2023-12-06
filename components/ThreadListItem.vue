@@ -45,7 +45,8 @@
 		:has-replies="true"
 		@like="likeComment"
 		@delete="deleteComment"
-		@fetch-replies="$emit('fetchReplies', thread)">
+		@fetch-replies="$emit('fetchReplies', thread)"
+		@reply="comment => $emit('reply', comment, thread)">
 		<ThreadComment 
 			v-for="reply in replies" 
 			:key="reply.id" 
@@ -53,7 +54,8 @@
 			:comment="reply.comment" 
 			:has-replies="false"
 			@delete="deleteComment"
-			@like="likeComment" />
+			@like="likeComment"
+			@reply="comment => $emit('reply', comment, thread)" />
 		<button 
 			v-if="hasNext" 
 			class="mx-auto btn bg-violet-700 text-white" 

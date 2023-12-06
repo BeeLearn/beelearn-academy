@@ -1,13 +1,12 @@
+import Api from "~/lib/api";
 import type Thread from "~/lib/api/models/thread.model";
 import type Comment from "~/lib/api/models/comment.model";
 
-
 import type { PaginateState, LoadingState } from "./types";
-import Api from "~/lib/api";
 
 const threadAdapter = createEntityAdapter<Thread>({
   getSelectorId: (instance) => instance.id,
-  sortBy: (a, b) => Date.parse(a.created_at) - Date.parse(b.created_at),
+  sortBy: (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at),
 });
 
 type ThreadState = {} & PaginateState & LoadingState;
@@ -79,17 +78,49 @@ export const useThreadStore = defineStore("thread", {
 
       if (url)
         thread.subThread.replies = thread.subThread.replies.concat(
-          ...data.results
+          data.results
         );
       else thread.subThread.replies = data.results;
     },
-    async updateComment(comment: Comment, body: Record<string, any>){
+    async updateComment(comment: Comment, body: Record<string, any>) {
       const { data } = await Api.instance.commentProvider.update({
         path: comment.id,
         data: body,
       });
 
       Object.assign(comment, data);
+    },
+    async createComment(comment: Record<string, any>, parent: Thread | null) {
+      if (parent) {
+        const { data } = await Api.instance.replyProvider.create({
+          data: {
+            comment,
+            parent: parent.comment.id,
+          },
+        });
+
+        parent.subThread.replies.push(data);
+
+        return data;
+      }
+
+      const { data } = await Api.instance.threadProvider.create({
+        data: {
+          comment,
+          reference: comment.reference,
+        },
+      });
+
+      data.subThread = {
+        count: 0,
+        next: null,
+        previous: null,
+        replies: [],
+      };
+
+      threadAdapter.addOne(this, data);
+
+      return data;
     },
   },
   getters: {
