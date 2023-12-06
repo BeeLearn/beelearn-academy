@@ -29,11 +29,11 @@ import { UserType } from '~/lib/api/models/user.model';
                     </div>
                     <UnoIcon class="i-mdi:chevron-right text-2xl" />
                 </div>
-                <div class="flex space-x-4 items-center bg-emerald-100 px-4 py-2 rounded-md">
+                <div class="flex space-x-4 items-center bg-violet-100 px-4 py-2 rounded-md">
                     <p class="flex-1 text-xl">
                         You're not <b>Premium</b>
                     </p>
-                    <button class="flex center w-12 h-12 bg-emerald-500 rounded-full">
+                    <button class="flex center w-12 h-12 bg-violet-700 rounded-full">
                         <UnoIcon class="i-tabler:diamond text-white text-4xl" />
                     </button>
                 </div>

@@ -77,7 +77,7 @@
 						<span class="text-sm">{{ comment.reply_count }} replies</span>
 					</button>
 					<button 
-						class="text-emerald-500 text-sm"
+						class="text-violet-700 text-sm"
 						@click="$emit('reply')">Reply</button>
 				</div>
 				<div 

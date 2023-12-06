@@ -9,6 +9,12 @@ import {
 
 export default defineConfig({
   safelist: [
+    "i-mdi:bell",
+    "i-mdi:bell-outline",
+    "i-mdi:heart",
+    "i-mdi:heart-outline",
+    "i-mdi:medal",
+    "i-mdi:medal-outline",
     "i-mdi:progress-helper",
     "i-tabler:progress-bolt",
     "i-material-symbols:category-outline",
@@ -20,5 +26,5 @@ export default defineConfig({
     "i-mdi:check-circle",
   ],
   presets: [presetUno(), presetIcons(), presetAttributify()],
-   transformers: [transformerDirectives(), transformerVariantGroup()],
+  transformers: [transformerDirectives(), transformerVariantGroup()],
 });

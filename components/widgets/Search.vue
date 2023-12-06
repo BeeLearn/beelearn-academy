@@ -4,7 +4,7 @@
     };
 
     type SearchEmit = {
-        (event: 'update:search', value: string): void,
+        (event: 'update:search', value: string | null): void,
     }
 
     defineProps<SearchProps>();
@@ -19,8 +19,10 @@
             window.clearTimeout(timer);
 
         timer = window.setTimeout(() => {
-            if(value.trim().length > 0)
+            if(value.trim().length > 2)
                 emit('update:search', value);
+            else 
+                emit('update:search', null);
         }, 500);
     }
 </script>

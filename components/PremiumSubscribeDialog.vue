@@ -15,7 +15,7 @@
 			class="fixed inset-0 flex flex-col bg-black/50 z-100"
 			md="items-end">
 			<div 
-				class="flex-1 flex flex-col bg-emerald-50"
+				class="flex-1 flex flex-col bg-violet-50"
 				md="w-1/2"
 				lg="w-1/3">
 				<header class="flex text-stone-500">
@@ -39,7 +39,7 @@
 							v-for="benefit, index in benefits" 
 							:key="index" 
 							class="flex space-x-4 items-center p-2">
-							<UnoIcon class="i-mdi:check-circle text-2xl text-emerald-900" />
+							<UnoIcon class="i-mdi:check-circle text-2xl text-violet-900" />
 							<p class="text-base">{{ benefit }}</p>
 						</div>
 					</div>

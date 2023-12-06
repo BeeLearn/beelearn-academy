@@ -11,10 +11,10 @@ import EarnPointList from "~/data/earn";
 				<div class="flex-1">
 					<p class="text-base">{{ earnPoint.name }}</p>
 				</div>
-				<button class="relative flex bg-emerald-500/50  rounded-full">
+				<button class="relative flex bg-violet-700/50  rounded-full">
 					<div class="top-1 -left-1 absolute bg-red">
 						<div class="relative flex center">
-							<UnoIcon class="absolute i-mdi:play-circle text-3xl text-emerald-500" />
+							<UnoIcon class="absolute i-mdi:play-circle text-3xl text-violet-700" />
 							<div class="w-4 h-4 bg-white" />
 						</div>
 					</div>

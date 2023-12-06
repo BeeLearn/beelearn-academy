@@ -1,9 +1,9 @@
 .input:hover {
-    --at-apply: transition border-emerald;
+    --at-apply: transition border-violet;
 }
 
 .input:focus-within {
-    --at-apply: border-emerald-500;
+    --at-apply: border-violet-700;
 }
 
 .input input {
@@ -20,11 +20,11 @@ input:focus {
 }
 
 .btn-primary {
-    --at-apply: bg-emerald-900 text-white;
+    --at-apply: bg-violet-900 text-white;
 }
 
 .btn-outline-primary {
-    --at-apply: border border-emerald-400 text-emerald-500;
+    --at-apply: border border-violet-400 text-violet-700;
 }
 
 .btn {
@@ -36,7 +36,7 @@ input:focus {
 }
 
 .btn-inverse {
-    --at-apply: bg-emerald-500 text-white disabled:bg-emerald;
+    --at-apply: bg-violet-700 text-white disabled:bg-violet;
 }
 
 .card {
@@ -92,11 +92,11 @@ body {
 }
 
 .progress {
-    --at-apply: w-10 h-10 border-4 animate-spin rounded-full;
+    @apply w-10 h-10 border-4 !border-t-transparent animate-spin rounded-full;
 }
 
 .progress-primary {
-    --at-apply: border-t-transparent border-emerald-500;
+    --at-apply: border-violet-700;
 }
 
 .font-noto-sans {

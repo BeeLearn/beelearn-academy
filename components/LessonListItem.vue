@@ -17,7 +17,7 @@
         <div class="flex space-x-4">
             <UnoIcon 
                 class="i-mdi:book-outline text-4xl"
-                :class="isUnlocked ? 'text-emerald-500' : 'text-emerald'" />
+                :class="isUnlocked ? 'text-violet-700' : 'text-violet'" />
             <div class="flex-1">
                 <div class="flex">
                     <p class="flex-1 text-sm text-slate-500">Lesson</p>
@@ -40,7 +40,7 @@
         </div>
         <button
             v-if="isUnlocked && !lesson.is_completed" 
-            class="flex center bg-emerald-500 py-3 rounded text-white">
+            class="flex center bg-violet-700 py-3 rounded text-white">
             Learn
         </button>
     </NuxtLink>

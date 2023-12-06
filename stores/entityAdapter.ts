@@ -31,6 +31,11 @@ export const createEntityAdapter = <K, V extends RecordKey = RecordKey>({
     state.ids.push(id);
     state.entities[id] = payload;
   },
+  addMany(state: EntityState<K>, payload: K[]){
+    for(const element of payload){
+      this.addOne(state, element);
+    }
+  },
   setOne(state: EntityState<K>, payload: K){
     const id = getSelectorId(payload);
     state.entities[id] = payload;

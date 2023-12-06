@@ -40,7 +40,7 @@
             </section>
             <footer class="flex center p-4 border-t border-slate">
                 <button 
-                    class="bg-emerald-500 text-white px-12 py-3 rounded" 
+                    class="bg-violet-700 text-white px-12 py-3 rounded" 
                     @click="$router.back()">
                     Continue
                 </button>

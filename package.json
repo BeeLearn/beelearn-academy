@@ -10,10 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@iconify-json/material-symbols": "^1.1.62",
     "@iconify-json/mdi": "^1.1.55",
     "@iconify-json/mdi-light": "^1.1.7",
     "@iconify-json/tabler": "^1.1.96",
-    "@iconify-json/material-symbols": "^1.1.62",
     "@nuxt-themes/typography": "^1.0.1",
     "@nuxt/devtools": "latest",
     "@nuxtjs/google-fonts": "^3.0.2",
@@ -33,6 +33,7 @@
     "pinia": "^2.1.7",
     "shuffle-array": "^1.0.1",
     "v-calendar": "^3.1.2",
+    "vue-toast-notification": "^3.1.2",
     "vue3-circle-progress": "^1.0.7",
     "vuedraggable": "^4.1.0"
   }

@@ -64,7 +64,6 @@
 			</TabPanels>
 		</TabGroup>
 		<Teleport to="#__nuxt">
-			<PremiumSubscribeDialog />
 			<NuxtPage />
 		</Teleport>
 	</div>

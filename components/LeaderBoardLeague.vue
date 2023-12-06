@@ -11,7 +11,7 @@
 </script>
 <template>
 	<div 
-		class="order-first flex flex-col space-y-4 card pb-0 rounded-xl overflow-scroll"
+		class="order-first flex flex-col space-y-4 card pb-0 rounded-xl overflow-y-scroll"
 		md="w-sm order-none col-start-2 row-end-1">
 		<header class="flex items-center space-x-4 p-4">
 			<h1 class="flex-1 text-xl font-bold">{{currentLeague?.name}}</h1>

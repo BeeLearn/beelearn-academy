@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   css: [
     "@unocss/reset/tailwind.css",
     "v-calendar/style.css",
-    "swiper/css",
+    "vue-toast-notification/dist/theme-sugar.css",
     "~/assets/css/font.css",
     "~/global.css",
   ],
@@ -46,3 +46,4 @@ export default defineNuxtConfig({
   },
   components: [{ path: "~/components" }, { path: "~/components/widgets" }],
 });
+

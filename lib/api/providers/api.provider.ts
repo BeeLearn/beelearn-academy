@@ -3,7 +3,7 @@ import type { AxiosInstance } from "axios";
 import type Paginate from "../models/_paginate.model";
 
 export type TApiOption = {
-  url?: string;
+  url?: string | null;
   path?: string | number;
   query?: Record<string, any>;
 };

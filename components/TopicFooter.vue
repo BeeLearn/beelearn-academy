@@ -2,10 +2,10 @@
     import type TopicQuestion from '~/lib/api/models/topic_question.model';
 
     interface TopicFooterProps {
-        loading: boolean,
-        canBack: boolean,
-        actionDisabled: boolean,
-        isQuestionView: boolean,
+        loading?: boolean,
+        canBack?: boolean,
+        actionDisabled?: boolean,
+        isQuestionView?: boolean,
         topicQuestion?: TopicQuestion,
     }
 
@@ -30,13 +30,13 @@
             @click="$emit('back')">Back</button>
         <button 
             v-if="isQuestionView" 
-            class="btn text-emerald-500"
+            class="btn text-violet-700"
             @click="$emit('unlock')">
             <UnoIcon class="i-mdi:lock-open text-xl" />
         </button>
         <button 
             v-if="isQuestionView && topicQuestion?.is_answered" 
-            class="btn text-emerald-500"
+            class="btn text-violet-700"
             @click="$emit('next')">Skip</button>
         <button 
             :disabled="loading || actionDisabled" 

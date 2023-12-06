@@ -56,7 +56,7 @@
 			@like="likeComment" />
 		<button 
 			v-if="hasNext" 
-			class="mx-auto btn bg-emerald-700 text-white" 
+			class="mx-auto btn bg-violet-700 text-white" 
 			@click="$emit('fetchReplies', thread, thread.subThread.next)">
 			Load more
 		</button>

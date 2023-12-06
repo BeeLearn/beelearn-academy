@@ -15,7 +15,7 @@
 </script>
 <template>
     <main 
-        class="flex-1 flex flex-col bg-slate-100 overflow-scroll"
+        class="flex-1 flex flex-col bg-slate-100 overflow-y-scroll"
         md="items-center">
         <div 
             v-if="isLoading"

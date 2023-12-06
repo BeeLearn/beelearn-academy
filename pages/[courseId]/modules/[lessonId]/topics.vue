@@ -4,8 +4,8 @@
   import type TopicQuestion from '~/lib/api/models/topic_question.model';
 
   enum ViewType {
-    TOPIC_VIEW = "TOPIC_VIEW",
-    QUESTION_VIEW = "QUESTION_VIEW",
+    topicView,
+    questionView,
   }
 
   const route = useRoute();
@@ -26,33 +26,33 @@
   const breadcrumb = computed(() => topicStore.breadcrumb);
   const loadingState = computed(() => topicStore.state);
 
-  const currentProgress = computed(() => (page.value / (viewTypes.value.length - 1)) * 100);
-
   const viewTypes = computed(
     () => topics.value.flatMap((topic) => {
-      const questionViewTypes = topic.topic_questions.map<[ViewType, any]>(
-        topic_question => {
-          topic_question.topic = topic;
-          return [ViewType.QUESTION_VIEW, topic_question];
+      const viewTypes: Array<[ViewType, any]> = topic.topic_questions.map<[ViewType, any]>(
+        question => {
+          question.topic = topic;
+          return [ViewType.questionView, question];
         }
       );
 
-      return questionViewTypes.concat([[ViewType.TOPIC_VIEW, topic]]);
+      return [[ViewType.topicView, topic]].concat(viewTypes) as [ViewType, any];
     })
   );
 
 
   const topic = computed<Topic>(() => {
-    const [viewType, value] = viewTypes.value[page.value - 1];
+    const element = viewTypes.value[page.value];
+    console.log(element)
+    if(!element) return;
 
-    if(viewType === ViewType.QUESTION_VIEW)  return value.topic;
-    
+    const [viewType, value] = element;
+    if(viewType === ViewType.questionView)  return value.topic;    
     return value;
   });
 
   const page = computed<number>({
     get(){
-      return Number(route.query.page ?? 1);
+      return Number(route.query.page ?? 0);
     },
     set(value: number){
       questionRef.value = null;
@@ -64,9 +64,11 @@
     },
   });
 
+  const currentProgress = computed(() => (page.value / (viewTypes.value.length - 1)) * 100);
+
   const onQuestionSubmit = async function(){
     isLoading.value = true;
-		const value = viewTypes.value[page.value - 1][1] as TopicQuestion;
+		const value = viewTypes.value[page.value][1] as TopicQuestion;
 
     try {			
       if(questionRef.value!.isCorrect){      
@@ -89,7 +91,6 @@
   }
 
   const onTopicComplete = async function(){
-
 		if(topic.value.is_completed && topic.value.is_unlocked)	return;
 
 		isLoading.value = true;
@@ -117,8 +118,8 @@
       topicStore.getTopics(lessonId);
   });
 
-  onBeforeRouteLeave(async () => {
-    threadStore.$reset();
+  onBeforeRouteLeave(() => {
+    topicStore.$reset();
   });
 </script>
 <template>
@@ -142,16 +143,9 @@
             <p class="text-nowrap truncate">{{ breadcrumb?.lesson.name }}</p>
           </div>
         </div>
-        <div 
-          class="order-2 col-start-3 py-4"
-          md="order-last flex-1 flex items-start justify-end p-0">
-          <NuxtLink
-            :to="($route.query.page ? 'topics/' : '') +`${topic.thread_reference}/threads/`"
-            class="flex items-center space-x-2 p-4">
-            <UnoIcon class="i-mdi:chevron-left text-xl" />
-            <p class="text-nowrap">{{ topic.thread_count }} {{ topic.thread_count > 1 ? 'Threads' : 'Thread' }}</p>
-          </NuxtLink>
-        </div>
+        <TopicThreadAction 
+          v-if="topic"
+          :topic="topic" />
         <div 
           class="order-3 flex-1 flex flex-col space-y-4 col-span-100 row-span-100 px-6 overflow-y-scroll"
           md="order-2 flex-none w-md py-4"
@@ -172,8 +166,8 @@
             :key="value.id">
             <Transition enter-active-class="animate-slide-in-right animate-duration-200">
               <div
-                v-if="viewType === ViewType.QUESTION_VIEW && index === page"
-                class="flex-1 flex flex-col space-y-4 overflow-scroll">
+                v-if="viewType === ViewType.questionView && index === page"
+                class="flex-1 flex flex-col space-y-4 overflow-y-scroll">
                 <TopicDynamicQuestion
 									:topic-question="value"
                   v-model:inner-ref="questionRef"
@@ -182,7 +176,7 @@
                   @submit="onQuestionSubmit" />
               </div>
               <TopicDynamicContent
-                v-else-if="viewType === ViewType.TOPIC_VIEW && index === page"
+                v-else-if="viewType === ViewType.topicView && index === page"
                 :topic="value"/>
             </Transition>
           </template>
@@ -190,7 +184,7 @@
       </div>
       <TopicFooter
         :loading="isLoading"
-        :can-back="page > 1"
+        :can-back="page > 0"
         :is-question-view="Boolean(questionRef)"
         :action-disabled="!isChanged && Boolean(questionRef)"
         :topic-question="(viewTypes.at(page)?.at(1) as TopicQuestion | undefined)"
@@ -206,6 +200,9 @@
 						}
             else {
 							await onTopicComplete();
+              if(breadcrumb?.lesson.is_completed)
+                return $router.back();
+
 							isCompleted = true;
 						}
           }

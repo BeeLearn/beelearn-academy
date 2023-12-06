@@ -25,12 +25,14 @@ export const useTopicStore = defineStore("topic", {
       breadcrumb: null,
     }),
   actions: {
-    getTopics(lessonId: string) {
+    getTopics(value: string | Record<string, any>) {
+      let query: Record<string, any> = {};
+      if (typeof value === "string") query.lesson = value;
+      else query = value;
+
       return reducer(
         Api.instance.topicProvider.list({
-          query: {
-            lesson: lessonId,
-          },
+          query
         })
       )
         .addCase(PromiseStatus.pending, () => {
