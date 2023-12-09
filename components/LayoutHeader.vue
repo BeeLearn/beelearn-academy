@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import e from '~/lib/e';
+
 	const userStore = useUserStore();
 
 	const user = computed(() => userStore.user);
+	const snackbar = useSnackbar();
 </script>
 <template>
 	<header class="flex items-center bg-white pr-4">

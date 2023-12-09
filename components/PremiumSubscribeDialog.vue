@@ -12,7 +12,7 @@
 		leave-active-class="animate-bounce-out animate-duration-200">
 		<div
 			v-if="isVisible" 
-			class="fixed inset-0 flex flex-col bg-black/50 z-100"
+			class="fixed inset-0 flex flex-col bg-black/50 z-20"
 			md="items-end">
 			<div 
 				class="flex-1 flex flex-col bg-violet-50"

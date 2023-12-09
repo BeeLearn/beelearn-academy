@@ -26,9 +26,15 @@ dependencies:
   axios:
     specifier: ^1.6.1
     version: 1.6.1
+  djira-client:
+    specifier: ^0.0.3
+    version: 0.0.3
   firebase:
     specifier: ^10.5.2
     version: 10.5.2
+  ng-state-adapter:
+    specifier: link:..\ng-state-adapter
+    version: link:../ng-state-adapter
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(typescript@5.2.2)(vue@3.3.8)
@@ -44,6 +50,9 @@ dependencies:
   vue3-circle-progress:
     specifier: ^1.0.7
     version: 1.0.7(core-js@3.33.2)(vue@3.3.8)
+  vue3-slider:
+    specifier: ^1.9.0
+    version: 1.9.0(vue@3.3.8)
   vuedraggable:
     specifier: ^4.1.0
     version: 4.1.0(vue@3.3.8)
@@ -4097,6 +4106,18 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       path-type: 4.0.0
+
+  /djira-client@0.0.3:
+    resolution: {integrity: sha512-PuehUbcCJVjSXbj7mhYzYeey3iGAfZ7okpbc9YWz9csxQp+vVpeHO+tuw72AdMJvRjh8lp3/fQBaDye52dl5Fw==}
+    dependencies:
+      socket.io-client: 4.7.2
+      tslib: 2.6.2
+      uuid: 9.0.1
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: false
 
   /dom-serializer@2.0.0:
     resolution: {integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==}
@@ -8778,6 +8799,11 @@ packages:
       which-typed-array: 1.1.13
     dev: true
 
+  /uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+    hasBin: true
+    dev: false
+
   /uvu@0.5.6:
     resolution: {integrity: sha512-+g8ENReyr8YsOc6fv/NVJs2vFdHBnBNdfE49rshrTzDWOlUx4Gq7KOS2GD8eqhy2j+Ejq29+SbKH8yjkAqXqoA==}
     engines: {node: '>=8'}
@@ -9104,6 +9130,15 @@ packages:
       vue: ^3.0.5
     dependencies:
       core-js: 3.33.2
+      vue: 3.3.8(typescript@5.2.2)
+    dev: false
+
+  /vue3-slider@1.9.0(vue@3.3.8):
+    resolution: {integrity: sha512-S+ojp3A21FiOM389Xp/bdUKSzjxcsTaDwI4N1aWVPoNh9//E8M+dqs1Ufjh86LulPAWLCN0ZR6eaD8jLZZ574g==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
       vue: 3.3.8(typescript@5.2.2)
     dev: false
 

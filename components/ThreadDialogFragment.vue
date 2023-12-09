@@ -43,7 +43,7 @@
 </script>
 <template>
 	<div 
-		class="fixed inset-0 flex bg-black/50 z-100"
+		class="fixed inset-0 flex bg-black/50 z-20"
 		md="justify-end">
 		<div 
 			class="flex-1 flex flex-col bg-white"

@@ -44,6 +44,9 @@ export const useStreakStore = defineStore("streak", {
         })
         .execute();
     },
+    setOne(streak: Streak){
+      streakAdapter.setOne(this, streak);
+    },
   },
   getters: {
     weeklyStreaks(state) {

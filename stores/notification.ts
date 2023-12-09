@@ -44,7 +44,16 @@ export const useNotificationStore = defineStore("notification", {
 			this.next = data.next;
 			this.previous = data.previous;
 			notificationAdapter.addMany(this, data.results);
-		}
+		},
+    addOne(notification: Notification){
+      notificationAdapter.addOne(this, notification);
+    },
+    updateOne(payload: EntityChangePayload<Notification>){
+      notificationAdapter.updateOne(this, payload);
+    },
+    removeOne(id: number){
+      notificationAdapter.removeOne(this, id);
+    }
   },
   getters: {
     isLoading: (state) => ["idle", "pending"].includes(state.state),

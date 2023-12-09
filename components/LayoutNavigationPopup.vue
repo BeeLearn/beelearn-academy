@@ -17,7 +17,7 @@
 			leave-active-class="animate-fade-out animate-duration-200">
 			<MenuItems 
 				as="div"
-				class="tooltip absolute left-2 w-56 flex flex-col bg-white p-2 rounded-xl z-30 shadow border  text-stone-600">
+				class="tooltip absolute left-2 w-56 flex flex-col bg-white p-2 rounded-xl z-20 shadow border  text-stone-600">
 				<MenuItem 
 					v-for="menu, index in menus"
 					:key="index"

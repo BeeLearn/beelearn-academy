@@ -7,8 +7,10 @@ export default defineNuxtConfig({
   css: [
     "@unocss/reset/tailwind.css",
     "v-calendar/style.css",
+    "vue3-circle-progress/dist/circle-progress.css",
     "@leyton-techlab/vue-input-highlighter/style.css",
     "vue-toast-notification/dist/theme-sugar.css",
+    "~/assets/css/snapbar.css",
     "~/assets/css/font.css",
     "~/global.css",
   ],

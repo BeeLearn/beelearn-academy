@@ -30,12 +30,15 @@
     "@popperjs/core": "^2.11.8",
     "@unocss/nuxt": "^0.57.2",
     "axios": "^1.6.1",
+    "djira-client": "^0.0.3",
     "firebase": "^10.5.2",
+    "ng-state-adapter": "link:..\\ng-state-adapter",
     "pinia": "^2.1.7",
     "shuffle-array": "^1.0.1",
     "v-calendar": "^3.1.2",
     "vue-toast-notification": "^3.1.2",
     "vue3-circle-progress": "^1.0.7",
+    "vue3-slider": "^1.9.0",
     "vuedraggable": "^4.1.0"
   }
 }

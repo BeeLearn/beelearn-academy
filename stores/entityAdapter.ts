@@ -1,11 +1,11 @@
 type RecordKey = number | string | symbol;
 
-type EntityState<V> = {
+export type EntityState<V> = {
   ids: Array<RecordKey>;
   entities: Record<RecordKey, V>;
 };
 
-type EntityChangePayload<K> = {
+export type EntityChangePayload<K> = {
   id: RecordKey;
   changes: Partial<K>;
 };
@@ -31,12 +31,12 @@ export const createEntityAdapter = <K, V extends RecordKey = RecordKey>({
     state.ids.push(id);
     state.entities[id] = payload;
   },
-  addMany(state: EntityState<K>, payload: K[]){
-    for(const element of payload){
+  addMany(state: EntityState<K>, payload: K[]) {
+    for (const element of payload) {
       this.addOne(state, element);
     }
   },
-  setOne(state: EntityState<K>, payload: K){
+  setOne(state: EntityState<K>, payload: K) {
     const id = getSelectorId(payload);
     state.entities[id] = payload;
   },
@@ -57,6 +57,11 @@ export const createEntityAdapter = <K, V extends RecordKey = RecordKey>({
     const data = Object.assign(state.entities[payload.id]!, payload.changes);
     state.entities[payload.id] = data;
   },
+  removeOne(state: EntityState<K>, id: V) {
+    const idIndex = state.ids.indexOf(id);
+    if (idIndex > 0) state.ids.splice(idIndex, 0);
+    delete state.entities[id];
+  },
   getSelector(state: EntityState<K>) {
     return {
       selectAll() {
@@ -64,7 +69,7 @@ export const createEntityAdapter = <K, V extends RecordKey = RecordKey>({
         if (sortBy) return values.sort(sortBy);
         return values;
       },
-      selectOne(id: ReturnType<typeof getSelectorId>){
+      selectOne(id: ReturnType<typeof getSelectorId>) {
         return state.entities[id];
       },
     };
