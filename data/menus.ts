@@ -15,9 +15,9 @@ export const homeMenus: Menu[] = [
     name: "Favorites",
     path: "/favorites",
   },
-  {
-    icon: "i-mdi:medal",
-    name: "LeaderBoard",
-    path: "/leaderboard",
-  },
+  // {
+  //   icon: "i-mdi:medal",
+  //   name: "LeaderBoard",
+  //   path: "/leaderboard",
+  // }, // not completed
 ];

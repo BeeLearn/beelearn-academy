@@ -26,6 +26,10 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
+      authBaseUrl: "",
+      apiBaseUrl: "",
+      sentryDns: "",
+      environment: "",
       iosBundleId: "",
       androidPackageName: "",
       firebaseConfig: {} as FirebaseOptions,

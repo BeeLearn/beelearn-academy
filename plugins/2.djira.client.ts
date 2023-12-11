@@ -2,15 +2,19 @@ import Client from "djira-client";
 
 import e from "~/lib/e";
 import type Streak from "~/lib/api/models/streak.model";
-import type Notification from "~/lib/api/models/notification.model";
 import type Course from "~/lib/api/models/course.model";
 import type Module from "~/lib/api/models/module.model";
 import type Lesson from "~/lib/api/models/lesson.model";
+import type Notification from "~/lib/api/models/notification.model";
 
 export default defineNuxtPlugin(() => {
-  const client = new Client("http://localhost:8000", {
+  const accessToken = useCookie("accessToken");
+  if (!accessToken.value) return;
+
+  const config = useRuntimeConfig();
+  const client = new Client(config.public.apiBaseUrl, {
     auth: {
-      token: "deef201a44a705fadf794a884685d25c705daaa9",
+      token: accessToken.value,
     },
   });
 
@@ -60,21 +64,18 @@ export default defineNuxtPlugin(() => {
       { event: "courses" },
       {
         onSuccess(response) {
-          console.log(response)
           const course = response.data;
           const courseInProgress = useCourseInProgressStore();
           const courseCompleted = useCourseCompletedStore();
 
-
-          if (course.is_completed) { // course.is_completed && course.is_enrolled
+          if (course.is_completed) {
+            // course.is_completed && course.is_enrolled
             courseInProgress.removeOne(course.id);
-            courseCompleted.setOne(course); 
-          } else if (course.is_enrolled) { // course.is_enrolled
+            courseCompleted.setOne(course);
+          } else if (course.is_enrolled) {
+            // course.is_enrolled
             courseInProgress.setOne(course);
           }
-        },
-        onError(response) {
-          console.log(response);
         },
       }
     );
@@ -83,13 +84,9 @@ export default defineNuxtPlugin(() => {
       { event: "modules" },
       {
         onSuccess(response) {
-          console.log(response);
           const module = response.data;
           const moduleStore = useModuleStore();
           moduleStore.updateOne({ id: module.id, changes: module });
-        },
-        onError(response) {
-          console.log(response);
         },
       }
     );
@@ -98,19 +95,14 @@ export default defineNuxtPlugin(() => {
       { event: "favorites" },
       {
         onSuccess(response) {
-          console.log(response);
           const course = response.data;
           const favoriteStore = useFavoriteCourseStore();
 
           if (response.type === "modified") {
             favoriteStore.addOne(course);
-            console.log("Fucked up")
-          }  else if (response.type === "removed") {
+          } else if (response.type === "removed") {
             favoriteStore.removeOne(course.id);
           }
-        },
-        onError(response) {
-          console.log(response);
         },
       }
     );
@@ -119,13 +111,9 @@ export default defineNuxtPlugin(() => {
       { event: "lessons" },
       {
         onSuccess(response) {
-          console.log(response);
           const lesson = response.data;
           const moduleStore = useModuleStore();
           moduleStore.updateLessons(lesson.module_id, lesson);
-        },
-        onError(response) {
-          console.log(response);
         },
       }
     );

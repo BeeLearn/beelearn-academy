@@ -38,9 +38,11 @@ class ApiImpl {
 
   readonly notificationProvider: NotificationProvider;
 
-  constructor(accessToken: string) {
+  constructor(public readonly accessToken: string) {
+    const config = useRuntimeConfig();
+
     this.axios = axios.create({
-      baseURL: "http://localhost:8000/",
+      baseURL: config.public.apiBaseUrl,
       headers: {
         Authorization: "Token " + accessToken,
       },

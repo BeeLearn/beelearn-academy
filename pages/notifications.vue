@@ -32,7 +32,7 @@
 		</div>
 		<template v-else>
 			<div 
-				class="flex-1 flex flex-col divide-y"
+				class="flex flex-col divide-y"
 				md="grid grid-cols-2 gap-x-4"
 				lg="grid-cols-3">
 				<div 
@@ -48,12 +48,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="flex-1 flex flex-col p-4">
-				<LoadMoreButton 
-					v-if="hasNext"
-					class="mx-auto"
-					:load-more="notificationStore.fetchNextNotifications" />
-			</div>
+			<LoadMoreButton 
+				v-if="hasNext"
+				class="mx-auto"
+				:load-more="notificationStore.fetchNextNotifications" />
 		</template>
 	</div>
 </template>

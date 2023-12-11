@@ -23,19 +23,23 @@
 		if(!value || value === oldQuery.value) return;
 
 		isLoading.value = true;
-		try {
-			 const results = await fetchCourses({
+		const results = await fetchCourses({
 				query: {
 					search: value,
 				}
-			});
-			courses.value = results;
-			oldQuery.value = query.value;
-		} catch(e){
+		})
+		.then(data => {
+				courses.value = data;
+				oldQuery.value = query.value;
+		})
+		.catch((error) => {
 			toast.error('An unexpected error occur. Try again!');
-		} finally {
+			
+			throw error;
+		})
+		.finally(() => {
 			isLoading.value = false;
-		}
+		})
 	});
 
 	const loadMore = async function(){
