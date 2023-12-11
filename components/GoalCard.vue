@@ -41,15 +41,15 @@
 			</div>
 			<WeeklyStreak :streaks="weeklyStreaks" />
 		</div>
+		<Teleport to="#__nuxt">
+			<Transition
+				enter-active-class="animate-bounce-in animate-duration-200"
+				leave-active-class="animate-fade-out animate-duration-200">
+				<GoalEditDialog 
+					v-if="isGoalEditDialogVisible"
+					:daily-streak-minutes="profile.daily_streak_minutes"
+					@close="isGoalEditDialogVisible = false" />
+			</Transition>
+		</Teleport>
 	</div>
-	<Teleport to="#__nuxt">
-		<Transition
-			enter-active-class="animate-bounce-in animate-duration-200"
-			leave-active-class="animate-fade-out animate-duration-200">
-			<GoalEditDialog 
-				v-if="isGoalEditDialogVisible"
-				:daily-streak-minutes="profile.daily_streak_minutes"
-				@close="isGoalEditDialogVisible = false" />
-		</Transition>
-	</Teleport>
 </template>

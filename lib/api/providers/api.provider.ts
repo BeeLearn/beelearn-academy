@@ -103,11 +103,13 @@ export abstract class ApiProviderImpl {
     return path;
   }
 
-  protected recordToFormData(record: Record<string, string>) {
+  protected recordToFormData(record: Record<string, any>) {
     const formData = new FormData();
 
     for (const [key, value] of Object.entries(record)) {
-      formData.append(key, value);
+      /// Todo
+      if (Array.isArray(value)) formData.append(key, value[0], value[1]);
+      else formData.append(key, value);
     }
 
     return formData;

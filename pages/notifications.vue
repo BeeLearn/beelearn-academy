@@ -13,12 +13,23 @@
 <template>
 	<div class="flex-1 flex flex-col overflow-y-scroll">
 		<header class="p-4">
-			<h1 class="text-xl font-extrabold">Notifications</h1>
+			<h1 class="text-2xl font-extrabold">Notifications</h1>
 			<p class="text-stone-700">All your notifications and activity will be found here</p>
 		</header>
 		<div
 			v-if="isLoading" 
 			class="m-auto progress progress-primary" />
+		<div
+			v-if="true" 
+			class="m-auto flex flex-col space-y-4 text-center items-center">
+			<img 
+				src="@/assets/illustrations/il_notification_empty.svg"
+				class="w-56 h-56" />
+			<div>
+				<h1 class="text-xl">No notification yet</h1>
+				<p class="text-stone-700">Start a new challenge and receive alerts!</p>
+			</div>
+		</div>
 		<template v-else>
 			<div 
 				class="flex-1 flex flex-col divide-y"

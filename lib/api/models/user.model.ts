@@ -15,6 +15,8 @@ type User = {
   avatar: string;
   email: string;
   username: string;
+  last_name: string;
+  first_name: string;
   full_name: string;
   profile: Profile;
   settings: Settings;

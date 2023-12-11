@@ -47,7 +47,7 @@
 		md="justify-end">
 		<div 
 			class="flex-1 flex flex-col bg-white"
-			md="flex-none w-1/3">
+			md="flex-none w-md">
 			<header class="flex items-center p-2 pl-0 shadow">
 				<div class="flex-1">
 					<button 

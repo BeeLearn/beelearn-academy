@@ -13,14 +13,15 @@ export const useUserStore = defineStore("user", {
     };
   },
   actions: {
-    async getCurrentUser(){
+    async getCurrentUser() {
       const response = await Api.instance.userProvider.getCurrentUser();
       this.user = response.data;
     },
-    async updateCurrentUser(data: DeepPartial<User>){
-      const response = await Api.instance.userProvider.updateCurrentUser({
-        data,
-      });
+    async updateCurrentUser(data: Record<string, any>, hasFile = false) {
+      const response = await Api.instance.userProvider.updateCurrentUser(
+        { data },
+        hasFile
+      );
 
       this.user = response.data;
     },

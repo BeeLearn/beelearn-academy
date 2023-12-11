@@ -1,3 +1,7 @@
+:root {
+    --at-apply: accent-purple-700;
+}
+
 .input:hover {
     --at-apply: transition border-violet;
 }

@@ -18,11 +18,25 @@
 		lg="w-1/2">
 		<header class="p-4">
 			<h1 class="text-2xl font-extrabold">Favorites</h1>
-			<p class="text-stone-700">When you like a topic they will be available here</p>
+			<p class="text-stone-700">When you like a topic they will be available as a collection</p>
 		</header>
 		<div
 			v-if="isLoading" 
 			class="m-auto progress progress-primary" />
+		<div 
+			v-else-if="true"
+			class="m-auto flex flex-col space-y-4 items-center">
+			<img 
+				src="@/assets/illustrations/il_book_collection.svg"
+				class="w-64 h-48" />
+			<div class="flex flex-col items-center space-y-1 text-center">
+				<h1 class="text-xl">No collection yet!</h1>
+				<p class="text-stone-700">Browse our exclusive course and try adding to your collection.</p>
+				<NuxtLink 
+					to="/" 
+					class="btn btn-primary">Home</NuxtLink>
+			</div>
+		</div>
 		<div 
 			v-else
 			class="flex-1 flex flex-col p-4">

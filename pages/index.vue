@@ -51,15 +51,61 @@
 					<HomeSingleCategoryTab 
 						v-else-if="tab.name === 'new-in'" 
 						:courses="newIn" 
-						:loading="newInIsLoading" />
+						:loading="newInIsLoading">
+						<img 
+							src="@/assets/illustrations/il_note.svg"
+							class="w-32 h-32" />
+						<div class="flex flex-col space-y-2">
+							<div>
+								<h1 class="text-xl">No new course yet!</h1>
+								<p class="text-stone-700">You will find all newly add content here</p>
+							</div>
+							<div>
+								<NuxtLink
+									to="/"
+									class="btn btn-primary space-x-2">
+									<UnoIcon class="i-material-symbols:explore text-xl" />
+									<span>Explore</span>
+								</NuxtLink>
+							</div>
+						</div>
+					</HomeSingleCategoryTab>
 					<HomeSingleCategoryTab 
 						v-else-if="tab.name === 'in-progress'" 
 						:courses="inProgress"
-						:loading="inProgressIsLoading" />
+						:loading="inProgressIsLoading">
+						<img 
+							src="@/assets/illustrations/il_timer.svg"
+							class="w-32 h-32" />
+						<div class="flex flex-col space-y-2">
+							<div>
+								<h1 class="text-xl">No pending course found!</h1>
+								<p class="text-stone-700">Enroll a new course now to get experience with fun.</p>
+							</div>
+							<div>
+								<NuxtLink
+									to="/"
+									class="btn btn-primary space-x-2">
+									<UnoIcon class="i-material-symbols:explore text-xl" />
+									<span>Explore</span>
+								</NuxtLink>
+							</div>
+						</div>
+					</HomeSingleCategoryTab>
 					<HomeSingleCategoryTab 
 						v-else-if="tab.name === 'completed'" 
 						:courses="completed"
-						:loading="completedIsLoading" />
+						:loading="completedIsLoading">
+						<img 
+							src="@/assets/illustrations/il_complete.svg"
+							class="w-56 h56" />
+						<div class="flex flex-col space-y-2">
+							<div>
+								<h1 class="text-xl">No completed course yet!</h1>
+								<p class="text-stone-700">Take on a new challenge by completing a course.</p>
+							</div>
+						</div>
+					</HomeSingleCategoryTab>
 				</TabPanel>
 			</TabPanels>
 		</TabGroup>

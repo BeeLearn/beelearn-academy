@@ -12,6 +12,11 @@
 	<div 
 		v-if="loading" 
 		class="m-auto progress progress-primary" />
+	<!-- <div 
+		v-else-if="categories.length === 0"
+		class="m-auto flex flex-col space-y-4 items-center text-center">
+		<slot />
+	</div> -->
 	<template v-else>
 		<HomeUserCategory />
 		<template 

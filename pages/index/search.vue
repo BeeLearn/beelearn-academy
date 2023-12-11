@@ -50,8 +50,8 @@
 		<div 
 			class="flex-1 flex flex-col bg-white overflow-y-scroll"
 			md="w-1/2"
-			lg="w-1/3"
-			xl="w-2/5">
+			lg="w-md"
+			xl="w-lg">
 			<header class="flex space-x-2 py-2 shadow">
 				<button 
 					class="btn text-stone-500"

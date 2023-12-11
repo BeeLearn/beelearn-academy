@@ -16,8 +16,8 @@
 			md="items-end">
 			<div 
 				class="flex-1 flex flex-col bg-violet-50"
-				md="w-1/2"
-				lg="w-1/3">
+				md="w-sm"
+				lg="w-md">
 				<header class="flex text-stone-500">
 					<button 
 						class="p-4"

@@ -9,7 +9,20 @@ export default class UserProvider extends ApiProvider<User> {
     return this.get<User>({ path: "current-user" });
   }
 
-  updateCurrentUser({ data }: Pick<TApiPatchOption, "data">) {
+  // updateCurrentUser({ data }: Pick<TApiPatchOption, "data">) {
+  //   return this.patch<User>({ path: "current-user", data });
+  // }
+
+  updateCurrentUser({ data }: Pick<TApiPatchOption, "data">, hasFile = true) {
+    if (hasFile) {
+      const formData = this.recordToFormData(data);
+      return this.multipartRequest<User>({
+        method: "PATCH",
+        path: "current-user",
+        data: formData,
+      });
+    }
+
     return this.patch<User>({ path: "current-user", data });
   }
 }

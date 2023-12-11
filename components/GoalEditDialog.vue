@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import e from '~/lib/e';
+	import e from '~/lib/e';
 
-
-  type GoalEditProps = {
-    dailyStreakMinutes: number,
-  };
+  	type GoalEditProps = {
+    	dailyStreakMinutes: number,
+  	}
 
 	type GoalEditEmits = {
 		(event: 'close', value: boolean) : void,
 	}
 
-	defineEmits<GoalEditEmits>();
+  defineEmits<GoalEditEmits>();
   const prop = defineProps<GoalEditProps>();
 
   const isLoading = ref(false);
@@ -65,12 +64,12 @@ import e from '~/lib/e';
             class="w-6 h-6 progress border-white" />
           <span v-else>Save</span>
         </button>
-			</header>
+		</header>
 			<div class="flex-1 flex center">
 				<div class="relative w-56 h-56 flex">
 					<VCircularSlider
 						v-model="goal"
-            :min="2"
+            			:min="2"
 						:height="16" 
 						:handle-scale="2" 
 						:always-show-handle="true"
