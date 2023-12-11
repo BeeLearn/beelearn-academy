@@ -43,6 +43,12 @@ export const useCourseCompletedStore = defineStore("courseCompleted", {
         })
         .execute();
     },
+    removeOne(id: number){
+      return courseAdapter.removeOne(this, id);
+    },
+    setOne(course: Course) {
+      return courseAdapter.setOne(this, course);
+    },
   },
   getters: {
     courses: (state) => courseAdapter.getSelector(state).selectAll(),

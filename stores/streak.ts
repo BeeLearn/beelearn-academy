@@ -44,7 +44,17 @@ export const useStreakStore = defineStore("streak", {
         })
         .execute();
     },
-    setOne(streak: Streak){
+    async updateStreak(id: number, body: Record<string, any>) {
+      const { data } = await Api.instance.streakProvider.update({
+        path: id,
+        data: body,
+      });
+
+      streakAdapter.updateOne(this, { id, changes: data });
+
+      return data;
+    },
+    setOne(streak: Streak) {
       streakAdapter.setOne(this, streak);
     },
   },
@@ -66,6 +76,12 @@ export const useStreakStore = defineStore("streak", {
             date.getFullYear() <= weekEnd.getFullYear()
           );
         });
+    },
+    todayStreak(state) {
+      return streakAdapter
+        .getSelector(state)
+        .selectAll()
+        .find((streak) => streak.is_today);
     },
     streaks: (state) => streakAdapter.getSelector(state).selectAll(),
     isLoading: (state) => ["idle", "pending"].includes(state.state),

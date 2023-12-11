@@ -24,7 +24,7 @@
 			v-if="isLoading" 
 			class="m-auto progress progress-primary" />
 		<div 
-			v-else-if="true"
+			v-else-if="favoriteCourses.length == 0"
 			class="m-auto flex flex-col space-y-4 items-center">
 			<img 
 				src="@/assets/illustrations/il_book_collection.svg"

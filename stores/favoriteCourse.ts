@@ -55,6 +55,15 @@ export const useFavoriteCourseStore = defineStore("favorite", {
       this.previous = data.previous;
       favoriteCourseAdapter.addMany(this, data.results);
     },
+    addOne(payload: Course) {
+      favoriteCourseAdapter.addOne(this, payload);
+    },
+    updateOne(payload: EntityChangePayload<Course>) {
+      favoriteCourseAdapter.updateOne(this, payload);
+    },
+    removeOne(id: number) {
+      favoriteCourseAdapter.removeOne(this, id);
+    },
   },
   getters: {
     isLoading: (state) => ["idle", "pending"].includes(state.state),

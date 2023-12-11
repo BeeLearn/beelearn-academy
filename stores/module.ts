@@ -2,10 +2,12 @@ import Api from "~/lib/api";
 import type Module from "~/lib/api/models/module.model";
 import type { LoadingState, PaginateState } from "./types";
 import type ModuleBreadcrumb from "~/lib/api/models/module_breadcrumb.model";
+import type Lesson from "~/lib/api/models/lesson.model";
 
 type ModuleState = {
-  breadcrumb: ModuleBreadcrumb | null,
-}  & LoadingState & PaginateState;
+  breadcrumb: ModuleBreadcrumb | null;
+} & LoadingState &
+  PaginateState;
 
 const moduleAdapter = createEntityAdapter<Module>({
   getSelectorId: (module) => module.id,
@@ -45,6 +47,25 @@ export const useModuleStore = defineStore("module", {
           this.state = "failed";
         })
         .execute();
+    },
+    updateOne(data: EntityChangePayload<Module>) {
+      return moduleAdapter.updateOne(this, data);
+    },
+    updateLessons(moduleId: number, lesson: Lesson) {
+      const module = moduleAdapter.getSelector(this).selectOne(moduleId);
+      if (module) {
+        const index = module.lessons.findIndex(
+          (element) => element.id === lesson.id
+        );
+
+        if (index > -1) {
+          module.lessons[index] = lesson;
+          moduleAdapter.updateOne(this, {
+            id: moduleId,
+            changes: { lessons: module.lessons },
+          });
+        }
+      }
     },
   },
   getters: {

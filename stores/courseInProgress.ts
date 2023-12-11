@@ -25,6 +25,7 @@ export const useCourseInProgressStore = defineStore("courseInProgress", {
         Api.instance.courseProvider.list({
           query: {
             course_enrolled_users: user!.id,
+            'course_complete_users!': user!.id,
           },
         })
       )
@@ -42,6 +43,12 @@ export const useCourseInProgressStore = defineStore("courseInProgress", {
           courseAdapter.setMany(this, data.results);
         })
         .execute();
+    },
+    removeOne(id: number) {
+      return courseAdapter.removeOne(this, id);
+    },
+    setOne(course: Course) {
+      return courseAdapter.setOne(this, course);
     },
   },
   getters: {

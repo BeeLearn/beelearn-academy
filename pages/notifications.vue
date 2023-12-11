@@ -20,7 +20,7 @@
 			v-if="isLoading" 
 			class="m-auto progress progress-primary" />
 		<div
-			v-if="true" 
+			v-else-if="notifications.length === 0" 
 			class="m-auto flex flex-col space-y-4 text-center items-center">
 			<img 
 				src="@/assets/illustrations/il_notification_empty.svg"
