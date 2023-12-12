@@ -6,5 +6,5 @@ export default defineNuxtPlugin(async () => {
 
   if (accessToken.value) {
     Api.accessToken = accessToken.value;
-  } else window.location.replace(config.public.authBaseUrl);
+  } else window.location.replace(config.public.authBaseUrl + '?redirect=' + window.location.href);
 });
