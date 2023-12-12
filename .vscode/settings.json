@@ -1,0 +1,24 @@
+{
+    "prettier.endOfLine": "crlf",
+    "prettier.tabWidth": 2,
+    "cSpell.words": [
+        "appspot",
+        "bluegray",
+        "dragdropquestion",
+        "Ffbrz",
+        "leaderboard",
+        "leyton",
+        "marshallswain",
+        "multichoicequestion",
+        "Noto",
+        "pepicons",
+        "reorderchoicequestion",
+        "shiki",
+        "singlechoicequestion",
+        "Snapbar",
+        "tabler",
+        "techlab",
+        "textoptionquestion",
+        "vuedraggable"
+    ]
+}

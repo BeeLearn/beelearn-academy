@@ -1,0 +1,57 @@
+<script setup lang="ts">
+	const notificationStore = useNotificationStore();
+
+	const hasNext = computed(() => Boolean(notificationStore.next));
+	const isLoading = computed(() => notificationStore.isLoading);
+	const notifications = computed(() => notificationStore.notifications);
+
+	useAsyncData(async () => {
+		if(notificationStore.state === "idle")
+			notificationStore.fetchNotifications();
+	});
+</script>
+<template>
+	<div class="flex-1 flex flex-col overflow-y-scroll">
+		<header class="p-4">
+			<h1 class="text-2xl font-extrabold">Notifications</h1>
+			<p class="text-stone-700">All your notifications and activity will be found here</p>
+		</header>
+		<div
+			v-if="isLoading" 
+			class="m-auto progress progress-primary" />
+		<div
+			v-else-if="notifications.length === 0" 
+			class="m-auto flex flex-col space-y-4 text-center items-center">
+			<img 
+				src="@/assets/illustrations/il_notification_empty.svg"
+				class="w-56 h-56" />
+			<div>
+				<h1 class="text-xl">No notification yet</h1>
+				<p class="text-stone-700">Start a new challenge and receive alerts!</p>
+			</div>
+		</div>
+		<template v-else>
+			<div 
+				class="flex flex-col divide-y"
+				md="grid grid-cols-2 gap-x-4"
+				lg="grid-cols-3">
+				<div 
+					v-for="notification in notifications"
+					:key="notification.id"
+					class="flex space-x-2 items-center px-4 py-2">
+					<img 
+						:src="notification.image"
+						class="w-10 h-10 object-cover" />
+					<div>
+						<p class="text-base font-medium">{{ notification.title }}</p>
+						<p class="text-stone-500 text-sm line-clamp-3">{{ notification.body }}</p>
+					</div>
+				</div>
+			</div>
+			<LoadMoreButton 
+				v-if="hasNext"
+				class="mx-auto"
+				:load-more="notificationStore.fetchNextNotifications" />
+		</template>
+	</div>
+</template>

@@ -1,0 +1,125 @@
+:root {
+    --at-apply: accent-purple-700;
+}
+
+.input:hover {
+    --at-apply: transition border-violet;
+}
+
+.input:focus-within {
+    --at-apply: border-violet-700;
+}
+
+.input input {
+    --at-apply: p-3;
+}
+
+input:hover,
+input:focus {
+    --at-apply: outline-none;
+}
+
+.btn {
+    --at-apply: inline-flex items-center justify-center px-4 py-2 rounded-md;
+}
+
+.btn-primary {
+    --at-apply: bg-violet-900 text-white;
+}
+
+.btn-outline-primary {
+    --at-apply: border border-violet-400 text-violet-700;
+}
+
+.btn {
+    @apply disabled:opacity-70;
+}
+
+.btn-outline-primary {
+    @apply disabled:border-gray disabled:text-gray;
+}
+
+.btn-inverse {
+    --at-apply: bg-violet-700 text-white disabled:bg-violet;
+}
+
+.card {
+    --at-apply: bg-white shadow rounded-xl;
+}
+
+.stack {
+    --at-apply: relative flex flex-col;
+}
+
+.center {
+    --at-apply: items-center justify-center;
+}
+
+
+.inline-flex-col {
+    --at-apply: flex flex-col items-start space-y-2;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+
+body {
+    scrollbar-width: 0;
+    font-family: 'Albert Sans';
+}
+
+.vc-header {
+    --at-apply: hidden;
+}
+
+
+/* .page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+ */
+
+.tooltip::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;
+    border-width: 12px;
+    border-style: solid;
+    border-color: transparent transparent theme("colors.slate.200") transparent;
+}
+
+.progress {
+    @apply w-10 h-10 border-4 !border-t-transparent animate-spin rounded-full;
+}
+
+.progress-primary {
+    --at-apply: border-violet-700;
+}
+
+.font-noto-sans {
+    font-family: 'Noto Sans';
+}
+
+.font-albert-sans {
+    font-family: 'Albert Sans';
+}
+
+.font-inter {
+    font-family: 'Inter';
+}
+
+.sub__comment img {
+    @apply: !w-8 !h-8;
+}
+
+.prose-p {
+    font-size: 14px!important;
+    font-family: 'Albert Sans'!important;
+}
