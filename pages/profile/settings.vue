@@ -32,14 +32,16 @@ const user = computed(() => userStore.user!);
 					</div>
 					<UnoIcon class="i-mdi:chevron-right text-2xl" />
 				</NuxtLink>
-				<div class="flex space-x-4 items-center bg-violet-100 px-4 py-2 rounded-md">
+				<NuxtLink
+					to="#subscribe" 
+					class="flex space-x-4 items-center bg-violet-100 px-4 py-2 rounded-md">
 					<p class="flex-1 text-xl">
-						You're not <b>Premium</b>
+						You're {{ user.is_premium ? '' : 'not'}} <b>Premium</b>
 					</p>
 					<button class="flex center w-12 h-12 bg-violet-700 rounded-full">
 						<UnoIcon class="i-tabler:diamond text-white text-4xl" />
 					</button>
-				</div>
+				</NuxtLink>
 				<div>
 					<h1 class="text-xl">Customize</h1>
 					<div class="flex flex-col divide-y">

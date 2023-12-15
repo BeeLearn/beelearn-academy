@@ -1,4 +1,5 @@
 <script setup lang="ts">
+	import Timer from '~/lib/timer';
 	import type Profile from '~/lib/api/models/profile.model';
 	import type Streak from '~/lib/api/models/streak.model';
 
@@ -8,11 +9,9 @@
 	}
 
 	const props = defineProps<GoalCardProps>();
-
-	const currentStreakMinutes = computed(() => 4);
-	const currentProgress = computed(() => (currentStreakMinutes.value / props.profile.daily_streak_minutes) * 100);
-
 	const isGoalEditDialogVisible = ref(false);
+	const currentStreakMinutes = computed(() => Math.floor(Timer.value/60));
+	const currentProgress = computed(() => (currentStreakMinutes.value / props.profile.daily_streak_minutes) * 100);
 </script>
 <template>
 	<div class="flex flex-col card">

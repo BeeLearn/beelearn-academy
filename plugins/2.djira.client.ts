@@ -7,12 +7,12 @@ import type Module from "~/lib/api/models/module.model";
 import type Lesson from "~/lib/api/models/lesson.model";
 import type Notification from "~/lib/api/models/notification.model";
 
-
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig();
   const accessToken = useCookie("accessToken", {
-  domain: config.public.rootDomain,
+    domain: config.public.rootDomain,
   });
+
   if (!accessToken.value) return;
 
   const client = new Client(config.public.apiBaseUrl, {
