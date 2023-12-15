@@ -3,11 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "build": "nuxi build",
+    "dev": "nuxi dev --port=5000",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
+    "postinstall": "nuxt prepare",
+    "cd": "nuxi build && nuxi generate --dotenv=.env.production && firebase deploy"
   },
   "devDependencies": {
     "@iconify-json/material-symbols": "^1.1.62",

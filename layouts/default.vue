@@ -6,6 +6,7 @@
 	const loadingState = ref<LoadingState>("idle");
 
 	useAsyncData(async () => {
+		console.log("hey async")
 		const promises = [streakStore.getStreaks(),
 		userStore.getCurrentUser()];
 
@@ -13,7 +14,7 @@
 
 		await Promise.all(promises)
 		.then(() => loadingState.value = "success")
-		.catch(() => loadingState.value = "error");
+		.catch((e) => loadingState.value = "error");
 	});
 </script>
 <template>

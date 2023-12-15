@@ -14,7 +14,7 @@
 	<div
 		role="checkbox" 
 		:aria-pressed="checked"
-		class="relative"
+		class="relative cursor-pointer"
 		@click="$emit('update:checked', $event, !checked)">
 		<slot />
 		<Transition

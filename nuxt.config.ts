@@ -3,7 +3,6 @@ import type { FirebaseOptions } from "firebase/app";
 export default defineNuxtConfig({
   ssr: false,
   extends: "@nuxt-themes/typography",
-  devtools: { enabled: true },
   css: [
     "@unocss/reset/tailwind.css",
     "v-calendar/style.css",
@@ -26,6 +25,7 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
+      rootDomain: "",
       authBaseUrl: "",
       apiBaseUrl: "",
       sentryDns: "",

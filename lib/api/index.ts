@@ -17,6 +17,8 @@ import CommentProvider from "./providers/comment.provider";
 import ReplyProvider from "./providers/reply.provider";
 import NotificationProvider from "./providers/notification.provider";
 
+/// Todo do add an interceptor to axios to redirect when token throws an Unauthorized error
+/// Or show a dialog with unauthorized, token scope doesn't include the requested permission
 class ApiImpl {
   private axios: AxiosInstance;
 
@@ -69,11 +71,23 @@ class ApiImpl {
 }
 
 export default class Api {
-  static instance: ApiImpl;
+  static #instance: ApiImpl;
+  static firebaseInstance: ApiImpl;
 
   private constructor() {}
 
-  static set accessToken(accessToken: string) {
-    Api.instance = new ApiImpl(accessToken);
+  static get instance() {
+    const config = useRuntimeConfig();
+    const accessToken = useCookie("accessToken", {
+      domain: config.public.rootDomain,
+    });
+
+    if (!accessToken.value) throw new Error("accessToken is not defined");
+
+    if (!this.#instance) {
+      this.#instance = new ApiImpl(accessToken.value);
+    }
+
+    return this.#instance;
   }
 }
