@@ -7,6 +7,7 @@ import type Module from "~/lib/api/models/module.model";
 import type Lesson from "~/lib/api/models/lesson.model";
 import type Notification from "~/lib/api/models/notification.model";
 
+
 export default defineNuxtPlugin(() => {
   const accessToken = useCookie("accessToken");
   if (!accessToken.value) return;
