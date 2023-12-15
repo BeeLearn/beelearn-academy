@@ -1,6 +1,8 @@
 export default defineNuxtPlugin(async () => {
-  const accessToken = useCookie("accessToken");
   const config = useRuntimeConfig();
+  const accessToken = useCookie("accessToken", {
+    domain: config.public.rootDomain,
+  });
 
   if (!accessToken.value)
     window.location.replace(
