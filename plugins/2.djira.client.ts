@@ -9,10 +9,12 @@ import type Notification from "~/lib/api/models/notification.model";
 
 
 export default defineNuxtPlugin(() => {
-  const accessToken = useCookie("accessToken");
+  const config = useRuntimeConfig();
+  const accessToken = useCookie("accessToken", {
+  domain: config.public.rootDomain,
+  });
   if (!accessToken.value) return;
 
-  const config = useRuntimeConfig();
   const client = new Client(config.public.apiBaseUrl, {
     auth: {
       token: accessToken.value,
