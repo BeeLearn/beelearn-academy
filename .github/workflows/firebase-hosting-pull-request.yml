@@ -15,10 +15,12 @@ jobs:
       - uses: actions/checkout@v3
       - run: npm install && npm run build && npm run generate
         env:
+          NUXT_PUBLIC_ENVIRONMENT: ${{ secrets.NUXT_PUBLIC_ENVIRONMENT }}
           NUXT_PUBLIC_SENTRY_DNS: ${{ secrets.NUXT_PUBLIC_SENTRY_DNS }}
+          NUXT_PUBLIC_AUTH_DOMAIN: ${{ secrets.NUXT_PUBLIC_AUTH_DOMAIN }}
+          NUXT_PUBLIC_ROOT_DOMAIN: ${{ secrets.NUXT_PUBLIC_ROOT_DOMAIN }}
           NUXT_PUBLIC_API_BASE_URL: ${{ secrets.NUXT_PUBLIC_API_BASE_URL }}
           NUXT_PUBLIC_IOS_BUNDLE_ID: ${{ secrets.NUXT_PUBLIC_IOS_BUNDLE_ID }}
-          NUXT_PUBLIC_AUTH_DOMAIN: ${{ secrets.NUXT_PUBLIC_AUTH_DOMAIN }}
           NUXT_PUBLIC_AUTH_BASE_URL: ${{ secrets.NUXT_PUBLIC_AUTH_BASE_URL }}
           NUXT_PUBLIC_ANDROID_PACKAGE_NAME: ${{ secrets.NUXT_PUBLIC_ANDROID_PACKAGE_NAME }}
       - uses: FirebaseExtended/action-hosting-deploy@v0
