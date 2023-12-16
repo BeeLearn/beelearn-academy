@@ -76,16 +76,20 @@ export default class Api {
 
   private constructor() {}
 
-  static get instance() {
+  static get accessToken() {
     const config = useRuntimeConfig();
     const accessToken = useCookie("accessToken", {
       domain: config.public.rootDomain,
     });
 
-    if (!accessToken.value) throw new Error("accessToken is not defined");
+    return accessToken;
+  }
+
+  static get instance() {
+    if (!this.accessToken.value) throw new Error("accessToken is not defined");
 
     if (!this.#instance) {
-      this.#instance = new ApiImpl(accessToken.value);
+      this.#instance = new ApiImpl(this.accessToken.value);
     }
 
     return this.#instance;
