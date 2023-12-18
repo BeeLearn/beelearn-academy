@@ -82,7 +82,9 @@ export default class Api {
       domain: config.public.rootDomain,
     });
 
-    return accessToken;
+    if (config.public.environment === "production") return accessToken;
+
+    return { value: "2d0e99d830e3fe5538c638fc8d97b69c56931031" };
   }
 
   static get instance() {

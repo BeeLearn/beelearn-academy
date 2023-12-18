@@ -123,3 +123,7 @@ body {
     font-size: 14px!important;
     font-family: 'Albert Sans'!important;
 }
+
+:focus, :hover {
+    --at-apply: outline-none;
+}

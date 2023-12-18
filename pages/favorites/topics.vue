@@ -1,8 +1,10 @@
 <script setup lang="ts">
+  import e from '~/lib/e';
   import type Topic from '~/lib/api/models/topic.model';
 
   const route = useRoute();
   const router = useRouter();
+  const snackbar = useSnackbar();
   const userStore = useUserStore();
   const topicStore = useTopicStore();
   const threadStore = useThreadStore();
@@ -26,6 +28,36 @@
   });
 
   const currentProgress = computed(() => (page.value / (topics.value.length - 1)) * 100);
+
+  const isBookmarkLoading = ref(false);
+  
+  const toggleBookmark = async function(){
+    isBookmarkLoading.value = true;
+    const payload  = {
+      add: [] as number[],
+      remove: [] as number[],
+    };
+
+    if(topic.value.is_liked) payload.remove.push(user.value.id);
+    else payload.add.push(user.value.id);
+
+    return topicStore.updateTopic(topic.value, {
+      likes: payload,
+    })
+    .catch((error) => {
+      snackbar.show(
+        e("span", { className: "i-mdi:information text-xl text-red-500"}), 
+        e("p", { 
+          textContent: topic.value.is_liked ? 
+          "Fail to remove topic from bookmarks" : 
+          "Fail to add to bookmark. Try again!"
+        })
+      );
+
+      return Promise.reject(error);
+    })
+    .finally(() => isBookmarkLoading.value = false);
+  }
 
   useAsyncData(async () => {    
     if(topicStore.state === "idle")
@@ -70,9 +102,17 @@
             <div 
               class="w-1/3 flex"
               md="place-content-end">
-              <button class="flex space-x-2">
+              <button class="flex space-x-2 items-center">
                 <UnoIcon class="i-mdi:heart text-red-500 text-xl" />
                 <span>{{ profile.lives }}</span>
+              </button>
+              <div class="flex-1" />
+              <button 
+                :disabled="isBookmarkLoading"
+                @click="toggleBookmark">
+                <UnoIcon 
+                  class="i-mdi:bookmark text-2xl self-end"
+                  :class="topic.is_liked ? 'text-violet-700' : 'text-stone-300'" />
               </button>
             </div>
           </div>

@@ -39,12 +39,17 @@
 					v-for="notification in notifications"
 					:key="notification.id"
 					class="flex space-x-2 items-center px-4 py-2">
-					<img 
-						:src="notification.image"
-						class="w-10 h-10 object-cover" />
 					<div>
-						<p class="text-base font-medium">{{ notification.title }}</p>
-						<p class="text-stone-500 text-sm line-clamp-3">{{ notification.body }}</p>
+						<img 
+							:src="notification.image"
+							class="w-10 h-10 object-cover"
+							:class="notification.topic === 'REWARD' ? 'bg-violet-700 rounded-lg' : undefined" />
+					</div>
+					<div>
+						<p 
+							class="text-base line-clamp-1"
+							:class="notification.is_read ? undefined : 'font-medium'">{{ notification.title }}</p>
+						<p class="text-stone-700 text-xs line-clamp-3">{{ notification.body }}</p>
 					</div>
 				</div>
 			</div>

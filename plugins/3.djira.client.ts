@@ -1,6 +1,7 @@
 import Client from "djira-client";
 
 import e from "~/lib/e";
+import Api from "~/lib/api";
 import type Streak from "~/lib/api/models/streak.model";
 import type Course from "~/lib/api/models/course.model";
 import type Module from "~/lib/api/models/module.model";
@@ -9,15 +10,12 @@ import type Notification from "~/lib/api/models/notification.model";
 
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig();
-  const accessToken = useCookie("accessToken", {
-    domain: config.public.rootDomain,
-  });
-
-  if (!accessToken.value) return;
+  
+  if (!Api.accessToken.value) return;
 
   const client = new Client(config.public.apiBaseUrl, {
     auth: {
-      token: accessToken.value,
+      token: Api.accessToken.value,
     },
   });
 
